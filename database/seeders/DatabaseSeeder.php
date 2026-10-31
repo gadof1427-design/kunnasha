@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Quote;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,17 +13,24 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed a small demo notebook so the platform can be tried right after `php artisan migrate --seed`.
      * Demo login: demo@kunnasha.test / password123
+     *
+     * Uses the models directly (no factories), so it also runs in production where Faker
+     * is not installed, and it does nothing when the demo data already exists.
      */
     public function run(): void
     {
-        $demo = User::factory()->create([
+        if (User::where('email', 'demo@kunnasha.test')->exists()) {
+            return;
+        }
+
+        $demo = User::create([
             'name' => 'حساب تجريبي',
             'username' => 'demo',
             'email' => 'demo@kunnasha.test',
             'password' => 'password123',
         ]);
 
-        $noura = User::factory()->create([
+        $noura = User::create([
             'name' => 'نورة',
             'username' => 'noura',
             'email' => 'noura@kunnasha.test',
@@ -42,11 +48,14 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($quotes as $index => [$user, $content, $author, $color]) {
-            Quote::factory()->for($user)->create([
+            $publishedAt = now()->subDays(count($quotes) - $index);
+
+            $user->quotes()->forceCreate([
                 'content' => $content,
                 'author' => $author,
                 'color' => $color,
-                'created_at' => now()->subDays(count($quotes) - $index),
+                'created_at' => $publishedAt,
+                'updated_at' => $publishedAt,
             ]);
         }
     }
