@@ -1,0 +1,28 @@
+/vendor
+/node_modules
+/public/build
+/public/hot
+
+.env
+.env.*
+!.env.example
+
+*.sqlite*
+/storage/*.key
+
+.phpunit.cache
+/.phpunit.result.cache
+
+/.idea
+/.vscode
+.DS_Store
+Thumbs.db
+
+# Local development tools
+.claude/
+.mcp.json
+AGENTS.md
+CLAUDE.md
+
+# SQLite database files
+*.sqlite*

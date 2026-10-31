@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'title' => 'My profile',
+    'intro' => 'Everyone has words worth telling, and this is your space in Kunnasha.',
+    'public_page' => 'My public page',
+    'settings' => 'Profile settings',
+    'settings_hint' => 'Update your details and profile photo.',
+    'name' => 'Name',
+    'name_hint' => '2 to 50 characters.',
+    'username' => 'Username',
+    'username_hint' => '3 to 30 characters: English letters, numbers and underscores only.',
+    'photo' => 'Profile photo',
+    'choose_photo' => 'Choose a photo',
+    'change_photo' => 'Change photo',
+    'delete_photo' => 'Delete photo',
+    'delete_photo_confirm' => 'Delete your profile photo?',
+    'photo_hint' => 'JPG, PNG or WEBP, up to 2 MB.',
+    'save' => 'Save changes',
+    'total_quotes' => 'My quotes in total',
+    'literary_space' => 'Your literary space',
+    'my_quotes' => 'My quotes',
+    'my_quotes_hint' => 'The words you chose to share.',
+    'add_quote' => '+ Add a quote',
+    'empty_title' => 'No quotes here yet.',
+    'empty_hint' => 'The first quote you add to your notebook will find its place here.',
+    'write_first' => 'Write your first quote',
+];

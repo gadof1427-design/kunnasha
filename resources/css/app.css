@@ -1,0 +1,276 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Noto Naskh Arabic', ui-sans-serif, system-ui, sans-serif;
+    /* Classical book face for the quotes themselves */
+    --font-quote: 'Amiri', 'Noto Naskh Arabic', serif;
+    --font-brand: 'Aref Ruqaa', 'Amiri', serif;
+
+    /* Kunnasha brand palette */
+    --color-kunnasha-gilt: #a8834a;
+    --color-kunnasha-ink: #3b2a24;
+    --color-kunnasha-paper: #fbf7ee;
+    --color-kunnasha-primary: #7c0221;
+    --color-kunnasha-dark: #580016;
+    --color-kunnasha-secondary: #8c1126;
+    --color-kunnasha-accent: #b6233e;
+
+    --color-kunnasha-gold: #f9e0b0;
+    --color-kunnasha-cream: #fff8cf;
+
+    --color-kunnasha-text: #292929;
+    --color-kunnasha-muted: #707070;
+    --color-kunnasha-border: #d4d4d4;
+    --color-kunnasha-background: #f2f2f2;
+    --color-white: #ffffff;
+
+    /* Legacy compatibility: old Medad classes */
+    --color-medad-purple: #7c0221;
+    --color-medad-purple-light: #8c1126;
+    --color-medad-lavender: #f9e0b0;
+    --color-medad-ivory: #fff8cf;
+    --color-medad-text: #292929;
+}
+
+/* Base styles */
+@layer base {
+    :root {
+        --kunasha-primary: #7c0221;
+        --kunasha-dark: #580016;
+        --kunasha-secondary: #8c1126;
+        --kunasha-accent: #b6233e;
+
+        --kunasha-gold: #f9e0b0;
+        --kunasha-cream: #fff8cf;
+
+        --kunasha-gray-dark: #292929;
+        --kunasha-gray: #707070;
+        --kunasha-border: #d4d4d4;
+        --kunasha-background: #f2f2f2;
+    }
+
+    /* The paper texture is a single fixed layer in the layout (see Layout/app.blade.php),
+       so it can never cover the footer and also stays fixed on iOS. */
+    body {
+        font-family: 'Noto Naskh Arabic', serif;
+        background-color: #ece3d8;
+        color: var(--kunasha-primary);
+    }
+
+    ::selection {
+        background-color: rgb(124 2 33 / 0.85);
+        color: #fff8cf;
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    .brand-name,
+    .brand-heading {
+        font-family: 'Aref Ruqaa', serif;
+    }
+}
+
+/* Components */
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center justify-center rounded-full bg-kunnasha-primary px-6 py-3 text-base font-semibold text-white shadow-md transition hover:bg-kunnasha-dark focus:outline-none focus-visible:ring-4 focus-visible:ring-kunnasha-gold/40;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center rounded-full bg-kunnasha-gold px-5 py-2.5 font-semibold text-kunnasha-primary shadow-sm transition hover:opacity-90;
+    }
+
+    .label {
+        @apply mb-1 block font-semibold text-kunnasha-primary;
+    }
+
+    .input {
+        @apply w-full rounded-xl border border-kunnasha-border bg-white px-4 py-3 text-kunnasha-text placeholder-gray-400 outline-none transition focus:border-kunnasha-accent focus:ring-2 focus:ring-kunnasha-gold/50;
+    }
+
+    .btn {
+        @apply inline-flex items-center justify-center rounded-full px-5 py-2.5 font-semibold transition focus:outline-none focus-visible:ring-4 focus-visible:ring-kunnasha-gold/40;
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 rounded-full border border-kunnasha-primary/30 bg-white/70 px-6 py-3 text-sm font-semibold text-kunnasha-primary backdrop-blur-sm transition hover:border-kunnasha-primary/60 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-kunnasha-gold/50;
+    }
+
+    /* Paper panel for page sections (profile, settings, notifications...) */
+    .kn-panel {
+        @apply rounded-3xl border border-kunnasha-gilt/25 bg-kunnasha-paper/95 shadow-[0_22px_48px_-30px_rgb(88_0_22/0.5)];
+    }
+
+    .kn-field {
+        @apply w-full rounded-2xl border border-kunnasha-border bg-white px-4 py-3 text-kunnasha-text outline-none transition placeholder:text-[#9a9a9a] focus:border-kunnasha-primary focus:ring-2 focus:ring-kunnasha-primary/15;
+    }
+}
+
+/* ------------------------------------------------------------------ */
+/* Ornaments                                                           */
+/* ------------------------------------------------------------------ */
+
+/* Divider: hairlines that fade out at both ends, with a star in the middle (direction-agnostic). */
+.kn-ornament {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent);
+}
+
+/* Repeating eight-point star (khatam) for maroon surfaces: footer, covers. */
+.kn-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23f9e0b0' stroke-width='1'%3E%3Crect x='21' y='21' width='22' height='22'/%3E%3Crect x='21' y='21' width='22' height='22' transform='rotate(45 32 32)'/%3E%3C/g%3E%3Cg fill='%23f9e0b0'%3E%3Ccircle cx='0' cy='0' r='1.6'/%3E%3Ccircle cx='64' cy='0' r='1.6'/%3E%3Ccircle cx='0' cy='64' r='1.6'/%3E%3Ccircle cx='64' cy='64' r='1.6'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 64px 64px;
+}
+
+/* Letterpress feel for the big wordmark */
+.kn-emboss {
+    text-shadow: 0 1px 0 rgb(255 255 255 / 0.55), 0 10px 30px rgb(124 2 33 / 0.18);
+}
+
+/* Kunnasha wordmark */
+.site-name {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    font-family: 'Aref Ruqaa', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+
+    color: #f9e0b0;
+    transition: transform 0.3s ease;
+}
+
+.site-name:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+/* ------------------------------------------------------------------ */
+/* Quote cards & interactions                                          */
+/* ------------------------------------------------------------------ */
+
+/* Cards rise in softly. `backwards` (not `both`) so hover transforms still work afterwards. */
+@keyframes kn-rise {
+    from { opacity: 0; transform: translateY(14px); }
+}
+
+.kn-rise {
+    animation: kn-rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    animation-delay: calc(var(--i, 0) * 55ms);
+}
+
+@keyframes kn-toast-in {
+    from { opacity: 0; transform: translateY(10px) scale(0.96); }
+}
+
+@keyframes kn-toast-out {
+    to { opacity: 0; transform: translateY(6px) scale(0.98); }
+}
+
+.kn-toast { animation: kn-toast-in 0.25s ease backwards; }
+.kn-toast-out { animation: kn-toast-out 0.25s ease forwards; }
+
+/* Manuscript frame: a hairline drawn just inside the edge in the element's accent colour.
+   Cards and previews set --kn-accent inline (see components/quote-card.blade.php). */
+.kn-frame {
+    position: relative;
+    isolation: isolate;
+}
+
+.kn-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0.55rem;
+    z-index: -1;
+    border: 1px solid var(--kn-accent, currentColor);
+    border-radius: 0.9rem;
+    opacity: 0.32;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+/* Quote card: soft shadow that deepens as the card lifts. */
+.kn-card {
+    box-shadow: 0 1px 2px rgb(41 41 41 / 0.06), 0 16px 34px -20px rgb(88 0 22 / 0.4);
+    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s ease;
+}
+
+.kn-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 2px 4px rgb(41 41 41 / 0.06), 0 26px 46px -22px rgb(88 0 22 / 0.5);
+}
+
+.kn-card:hover::before { opacity: 0.6; }
+
+/* Don't lift the card while its edit panel is open (it would move under the cursor). */
+.kn-card:has([data-edit-panel]:not(.hidden)):hover { transform: none; }
+
+/* Decorative « » marks */
+.kn-mark {
+    display: block;
+    font-family: 'Aref Ruqaa', serif;
+    font-size: 3.25rem;
+    line-height: 0.7;
+    color: var(--kn-accent, currentColor);
+    opacity: 0.8;
+    user-select: none;
+}
+
+/* Highlighted @mention inside quote text */
+.kn-mention {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+}
+
+/* Small round icon buttons on a card (they inherit the card's text colour) */
+.kn-icon-btn {
+    display: inline-flex;
+    height: 2.25rem;
+    width: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    opacity: 0.8;
+    transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+.kn-icon-btn:hover,
+.kn-icon-btn:focus-visible {
+    opacity: 1;
+    background-color: color-mix(in srgb, currentColor 14%, transparent);
+}
+
+.kn-icon-btn:focus-visible,
+.kn-text-btn:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.kn-icon-btn:disabled { opacity: 0.4; cursor: progress; }
+
+.kn-text-btn {
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    opacity: 0.85;
+}
+
+.kn-text-btn:hover { opacity: 1; text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) {
+    .kn-rise,
+    .kn-toast,
+    .kn-toast-out {
+        animation: none;
+    }
+
+    .kn-card,
+    .kn-card:hover {
+        transition: none;
+        transform: none;
+    }
+}

@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'title' => 'Explore',
+    'eyebrow' => 'Discover something meaningful',
+    'heading' => 'Explore the words',
+    'intro' => 'Search for a quote that feels like you, or discover new words worth keeping.',
+    'intro_accent' => 'Find words that resonate with you.',
+    'search_label' => 'Search for a quote',
+    'search_placeholder' => 'Search for a word, a quote or a name...',
+    'search_hint' => 'Search quote text, authors and member names, then sort by newest or oldest.',
+    'sort_label' => 'Sort quotes',
+    'newest' => 'Newest first',
+    'oldest' => 'Oldest first',
+    'search' => 'Search',
+    'results_for' => 'Results for “:search”',
+    'heading_all' => 'Quotes worth reading',
+    'shared_hint' => 'Words their owners chose to share.',
+    'shared_accent' => 'Words worth keeping.',
+    'clear_search' => 'Clear search',
+    'empty_title' => 'A space waiting for its words',
+    'no_match' => "We couldn't find a quote matching your search.",
+    'try_another' => 'Try a different word or another name.',
+    'show_all' => 'Show all quotes',
+    'none_yet' => 'No quotes have been published yet.',
+    'back_home' => 'Back to home',
+];
